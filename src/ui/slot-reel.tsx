@@ -94,7 +94,7 @@ export function SlotReel({
             </div>
           </div>
         ) : (
-          <div className="text-4xl text-gray-500">?</div>
+          <div className="text-4xl text-gray-800">?</div>
         )}
       </div>
 
