@@ -1,7 +1,7 @@
 // app/components/ThemeSwitcher.tsx
 "use client";
 
-import { Button } from "@heroui/button";
+import { Button } from "@heroui/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
