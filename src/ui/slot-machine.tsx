@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Button } from "@heroui/button";
-import { Card, CardBody, CardHeader } from "@heroui/react";
-import { CARD_TYPES, SlotReel } from "./card-3d";
+import { useState } from "react";
+import { Button, Card, CardBody, CardHeader } from "@heroui/react";
+import { CARD_TYPES, SlotReel } from "./slot-reel";
 
 interface GameState {
   cards: (typeof CARD_TYPES)[0][];
@@ -86,14 +85,24 @@ export default function SlotMachine() {
       : "0.0";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 dark:from-black dark:via-purple-950 dark:to-black p-4">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen rounded-sm bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 dark:from-black dark:via-purple-950 dark:to-black">
+      <div className="px-3 w-full max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center py-8">
-          <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 drop-shadow-2xl animate-pulse">
-            🎰 DANANTARA777 🎰
+        <div className="text-center py-6 md:py-8">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 drop-shadow-2xl animate-pulse">
+            <img
+              src="/fortune-wheel.png"
+              alt="Fortune Wheel"
+              className="inline-block h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-2"
+            />{" "}
+            DANANTARA777{" "}
+            <img
+              src="/fortune-wheel.png"
+              alt="Fortune Wheel"
+              className="inline-block h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-2"
+            />
           </h1>
-          <p className="text-xl text-yellow-300 mt-2 font-semibold">
+          <p className="text-lg sm:text-xl text-yellow-300 mt-2 font-semibold">
             Win BIG or Go Home!
           </p>
         </div>
@@ -103,7 +112,7 @@ export default function SlotMachine() {
           <Card className="bg-gradient-to-br from-yellow-500 to-orange-600 border-2 border-yellow-400">
             <CardBody className="text-center py-6">
               <p className="text-sm font-semibold text-yellow-100">TOKENS</p>
-              <p className="text-5xl font-bold text-white drop-shadow-lg">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
                 {gameState.tokens}
               </p>
             </CardBody>
@@ -112,7 +121,7 @@ export default function SlotMachine() {
           <Card className="bg-gradient-to-br from-green-500 to-emerald-600 border-2 border-green-400">
             <CardBody className="text-center py-6">
               <p className="text-sm font-semibold text-green-100">WIN RATE</p>
-              <p className="text-5xl font-bold text-white drop-shadow-lg">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
                 {winRate}%
               </p>
             </CardBody>
@@ -121,7 +130,7 @@ export default function SlotMachine() {
           <Card className="bg-gradient-to-br from-blue-500 to-purple-600 border-2 border-blue-400">
             <CardBody className="text-center py-6">
               <p className="text-sm font-semibold text-blue-100">TOTAL SPINS</p>
-              <p className="text-5xl font-bold text-white drop-shadow-lg">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
                 {gameState.history.length}
               </p>
             </CardBody>
@@ -130,9 +139,9 @@ export default function SlotMachine() {
 
         {/* Slot Machine */}
         <Card className="bg-gradient-to-b from-red-600 via-red-700 to-red-900 border-8 border-yellow-500 shadow-2xl">
-          <CardBody className="p-8">
-            <div className="bg-black/30 rounded-2xl p-6 mb-6">
-              <div className="grid grid-cols-5 gap-3">
+          <CardBody className="p-4 sm:p-6 md:p-8">
+            <div className="bg-black/30 rounded-2xl p-2 sm:p-4 md:p-6 mb-4 sm:mb-6">
+              <div className="grid grid-cols-5 gap-1 sm:gap-2 md:gap-3">
                 {Array(5)
                   .fill(null)
                   .map((_, idx) => (
@@ -148,24 +157,24 @@ export default function SlotMachine() {
 
             {/* Result Banner */}
             {gameState.result && (
-              <div
-                className={`text-center py-8 rounded-xl border-4 mb-6 animate-bounce ${
+              <Card
+                className={`text-center py-4 sm:py-6 md:py-8 rounded-xl border-4 mb-6 animate-bounce ${
                   gameState.result === "win"
                     ? "bg-green-500/90 border-green-300"
                     : "bg-red-500/90 border-red-300"
                 }`}
               >
-                <p className="text-6xl font-bold text-white drop-shadow-lg">
+                <p className="text-4xl font-bold text-white drop-shadow-lg">
                   {gameState.result === "win"
                     ? "🎉 JACKPOT! 🎉"
                     : "💔 TRY AGAIN 💔"}
                 </p>
-                <p className="text-2xl text-white mt-2 font-semibold">
+                <p className="text-lg text-white mt-2 font-semibold">
                   {gameState.result === "win"
                     ? "+100 TOKENS!"
                     : "Better luck next time!"}
                 </p>
-              </div>
+              </Card>
             )}
 
             {/* Controls */}
@@ -174,7 +183,7 @@ export default function SlotMachine() {
                 size="lg"
                 onPress={handleSpin}
                 disabled={gameState.isSpinning || gameState.tokens < 10}
-                className="w-full h-20 text-3xl font-bold bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white border-4 border-green-400 shadow-2xl transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full h-16 sm:h-20 text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white border-4 border-green-400 shadow-2xl transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {gameState.isSpinning
                   ? "🎰 SPINNING... 🎰"

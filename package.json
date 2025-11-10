@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@heroui/button": "^2.2.27",
     "@heroui/react": "^2.8.5",
     "@heroui/system": "^2.4.23",
     "@heroui/theme": "^2.4.23",

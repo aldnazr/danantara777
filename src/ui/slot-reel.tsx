@@ -38,16 +38,14 @@ export function SlotReel({
   }, [isSpinning, delay]);
 
   const getSuitColor = (suit: string) => {
-    return suit === "♥" || suit === "♦"
-      ? "text-red-500"
-      : "text-gray-800 dark:text-gray-200";
+    return suit === "♥" || suit === "♦" ? "text-red-500" : "text-gray-800";
   };
 
   const finalCard = card || displayCards[0];
 
   return (
     <div className="relative w-full h-64 bg-gradient-to-b from-gray-800 to-gray-900 dark:from-gray-900 dark:to-black rounded-xl overflow-hidden border-4 border-yellow-500/50 shadow-xl">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-yellow-500/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-yellow-500/5 to-transparent pointer-events-none" />
 
       <div
         className={`h-full flex flex-col justify-center items-center transition-all duration-300 ${
@@ -59,25 +57,39 @@ export function SlotReel({
             {displayCards.slice(0, 3).map((c, i) => (
               <div
                 key={i}
-                className="bg-white dark:bg-gray-100 rounded-lg p-4 w-20 h-24 flex flex-col items-center justify-center shadow-lg opacity-70"
+                className="bg-white dark:bg-gray-100 rounded-md sm:rounded-lg p-1 w-12 h-16 sm:w-16 sm:h-20 md:w-20 md:h-24 flex flex-col items-center justify-center shadow-lg opacity-70"
               >
-                <div className={`text-3xl font-bold ${getSuitColor(c.suit)}`}>
+                <div
+                  className={`text-xl sm:text-2xl md:text-3xl font-bold ${getSuitColor(
+                    c.suit
+                  )}`}
+                >
                   {c.rank}
                 </div>
-                <div className={`text-2xl ${getSuitColor(c.suit)}`}>
+                <div
+                  className={`text-lg sm:text-xl md:text-2xl ${getSuitColor(
+                    c.suit
+                  )}`}
+                >
                   {c.suit}
                 </div>
               </div>
             ))}
           </div>
         ) : finalCard ? (
-          <div className="bg-white dark:bg-gray-100 rounded-xl p-6 w-28 h-36 flex flex-col items-center justify-center shadow-2xl transform hover:scale-105 transition-transform">
+          <div className="bg-white dark:bg-gray-100 rounded-lg sm:rounded-xl p-2 w-full h-full flex flex-col items-center justify-center shadow-2xl transform hover:scale-105 transition-transform">
             <div
-              className={`text-5xl font-bold ${getSuitColor(finalCard.suit)}`}
+              className={`text-3xl sm:text-4xl md:text-5xl font-bold ${getSuitColor(
+                finalCard.suit
+              )}`}
             >
               {finalCard.rank}
             </div>
-            <div className={`text-4xl mt-2 ${getSuitColor(finalCard.suit)}`}>
+            <div
+              className={`text-2xl sm:text-3xl md:text-4xl mt-1 sm:mt-2 ${getSuitColor(
+                finalCard.suit
+              )}`}
+            >
               {finalCard.suit}
             </div>
           </div>
