@@ -86,7 +86,7 @@ export default function SlotMachine() {
 
   return (
     <div className="min-h-screen rounded-sm bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 dark:from-black dark:via-purple-950 dark:to-black">
-      <div className="px-3 w-full max-w-7xl mx-auto space-y-6">
+      <div className="px-3 py-6 w-full max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center py-6 md:py-8">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 drop-shadow-2xl animate-pulse">
@@ -229,8 +229,13 @@ export default function SlotMachine() {
         {gameState.history.length > 0 && (
           <Card className="bg-gray-800/50 border-2 border-gray-700">
             <CardHeader>
-              <h3 className="text-2xl font-bold text-yellow-400">
-                📊 Recent Spins
+              <h3 className="items-center flex  text-2xl font-bold text-yellow-400">
+                <img
+                  src="/history.png"
+                  alt="analysis"
+                  className="size-6 inline-block mr-2"
+                />
+                Recent Spins
               </h3>
             </CardHeader>
             <CardBody>
